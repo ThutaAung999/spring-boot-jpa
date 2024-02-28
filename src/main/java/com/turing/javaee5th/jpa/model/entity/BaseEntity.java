@@ -1,42 +1,35 @@
 package com.turing.javaee5th.jpa.model.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
-@Entity
-public class Movie implements Serializable{
-	
+@ToString
+@MappedSuperclass
+public class BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	private Long id;
-
-	@Column
-	private String title;
-
-	@Column
-	private Integer year;
-
-	@Column
-	private String genre;
-
-	@Column
-	@CreationTimestamp
-	Date  createdAt;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long id;
+	
+	@CreationTimestamp
 	@Column
+	Date createdAt;
+	
 	@UpdateTimestamp
+	@Column
 	Date updatedAt;
+	
 }
