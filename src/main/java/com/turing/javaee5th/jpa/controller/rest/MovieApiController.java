@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.turing.javaee5th.jpa.controller.rest.error.ApiErrorResponse;
@@ -65,6 +66,24 @@ public class MovieApiController {
 	}
 	
 	
+	
+	
+
+	@GetMapping("/year/{year}")
+	List<MovieDto> getAllMovieByYear(@PathVariable Integer year)
+	{
+		return this.movieService.getAllMovieByYear(year);
+	}
+	
+	
+	@GetMapping("/title")
+	List<MovieDto> getMovieByTitle(@RequestParam String title)
+	{
+		log.info("getByTitle controller "+title);
+		return this.movieService.getAllMovieTitle(title);
+	}
+	
+	/****************************************************************************/
 	@PostMapping
 	ResponseEntity<Object> saveMovie(@RequestBody @Valid MovieDto movie,
 									BindingResult result)

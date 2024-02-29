@@ -29,6 +29,10 @@ public class MovieServiceImpl implements MovieService {
 
 		List<Movie> movies = this.movieRepository.findAll();
 
+		return movieListToMovieDto(movies);
+	}
+
+	private List<MovieDto> movieListToMovieDto(List<Movie> movies) {
 		List<MovieDto> moviesDto = new ArrayList<>();
 
 		for (Movie movie : movies) {
@@ -56,6 +60,25 @@ public class MovieServiceImpl implements MovieService {
 		}
 	}
 
+	/******************************************/
+	@Override
+	public List<MovieDto> getAllMovieByYear(Integer year) {
+		List<Movie> movies = this.movieRepository.findByYear(year);
+		
+		return movieListToMovieDto(movies);
+	}
+	
+		
+	@Override
+	public List<MovieDto> getAllMovieTitle(String title) {
+		List<Movie> movies = this.movieRepository.findByTitle(title);
+		
+		return movieListToMovieDto(movies);
+	
+	}
+	
+	
+	/****************************************/
 	@Override
 	public MovieDto saveMovie(MovieDto movieDto) {
 		
@@ -82,4 +105,6 @@ public class MovieServiceImpl implements MovieService {
 	public void deleteById(Long id) {
 		this.movieRepository.deleteById(id);		
 	}
+
+	
 }

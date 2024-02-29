@@ -23,14 +23,14 @@ public class BaseEntity implements Serializable{
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	Long id;
+	private Long id;
 	
 	@CreationTimestamp
 	@Column
-	Date createdAt;
+	private Date createdAt;
 	
 	@UpdateTimestamp
 	@Column
-	Date updatedAt;
+	private Date updatedAt;
 	
 }
